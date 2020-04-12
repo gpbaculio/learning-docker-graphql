@@ -10,8 +10,8 @@ module.exports.up = (queryInterface, DataTypes) => {
       userId: {
         allowNull: false,
         references: {
-          key: 'id',
-          model: 'users'
+          key: "id",
+          model: "users"
         },
         type: DataTypes.UUID
       },
@@ -19,19 +19,10 @@ module.exports.up = (queryInterface, DataTypes) => {
         allowNull: false,
         type: DataTypes.DATE
       },
-      email: {
-        allowNull: false,
-        type: DataTypes.STRING,
-        unique: true
-      },
-      passwordHash: {
-        allowNull: false,
-        type: DataTypes.CHAR(64)
-      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE
-      },
+      }
     },
     {
       charset: "utf8"

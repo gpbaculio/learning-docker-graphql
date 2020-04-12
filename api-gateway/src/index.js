@@ -1,3 +1,5 @@
-import '@babel/polyfill'
+/** @format */
 
-import '#root/server/startServer'
+import '@babel/polyfill';
+
+import '#root/server/startServer';

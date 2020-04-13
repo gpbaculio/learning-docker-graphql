@@ -8,6 +8,7 @@ import resolvers from '#root/graphql/resolvers';
 import typeDefs from '#root/graphql/typeDefs';
 
 import formatGraphQLErrors from './formatGraphQLErrors'
+import injectSession from './injectSession'
 
 const PORT = accessEnv('PORT', 7000);
 
@@ -25,13 +26,15 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: (origin, cb) => cb(null, true),
-    credentials: true,
+    credentials: true
   })
 );
 
+app.use(injectSession)
+
 apolloServer.applyMiddleware({
   app,
-  corse: false,
+  cors: false,
   path: '/graphql',
 });
 

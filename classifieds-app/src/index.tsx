@@ -1,8 +1,13 @@
 import React from 'react';
+import { ApolloProvider } from 'react-apollo'
 import ReactDOM from 'react-dom';
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import './index.css';
 import App from './App';
+
+import * as theme from './theme'
+import graphQLClient from './api/graphQLClient'
+
 import * as serviceWorker from './serviceWorker';
 
 const GlobalStyle = createGlobalStyle`
@@ -20,8 +25,12 @@ const GlobalStyle = createGlobalStyle`
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyle />
-    <App />
+    <ApolloProvider client={graphQLClient}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <App />
+      </ThemeProvider>
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -2,10 +2,12 @@ import React from 'react';
 import { ApolloProvider } from 'react-apollo'
 import ReactDOM from 'react-dom';
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import { Provider } from 'react-redux'
 import './index.css';
 import App from './App';
 
 import * as theme from './theme'
+import store from './store'
 import graphQLClient from './api/graphQLClient'
 
 import * as serviceWorker from './serviceWorker';
@@ -25,12 +27,14 @@ const GlobalStyle = createGlobalStyle`
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={graphQLClient}>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <App />
-      </ThemeProvider>
-    </ApolloProvider>
+    <Provider store={store}>
+      <ApolloProvider client={graphQLClient}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <App />
+        </ThemeProvider>
+      </ApolloProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
